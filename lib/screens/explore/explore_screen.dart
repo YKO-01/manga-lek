@@ -17,8 +17,36 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   String? _selectedGenre;
-  Category? _selectedCategory;  // Changed to Category object
+  Category? _selectedCategory; // Changed to Category object
   String _sortBy = 'title'; // title, rating, chapters
+
+  // Manga type categories (Manga, Manhwa, Manhua)
+  final List<Category> _typeCategories = const [
+    Category(
+      id: 'manga',
+      name: 'Manga',
+      icon: '🇯🇵',
+      mangaCount: 0,
+      filterType: 'type',
+      filterValue: 'Manga',
+    ),
+    Category(
+      id: 'manhwa',
+      name: 'Manhwa',
+      icon: '🇰🇷',
+      mangaCount: 0,
+      filterType: 'type',
+      filterValue: 'Manhwa',
+    ),
+    Category(
+      id: 'manhua',
+      name: 'Manhua',
+      icon: '🇨🇳',
+      mangaCount: 0,
+      filterType: 'type',
+      filterValue: 'Manhua',
+    ),
+  ];
 
   // Get all unique genres from manga data
   List<String> _getUniqueGenres(MangaService mangaService) {
@@ -46,19 +74,25 @@ class _ExploreScreenState extends State<ExploreScreen> {
             var filteredMangas = mangaService.allMangas.toList();
 
             // Filter by category (type or status based)
-            if (_selectedCategory != null && _selectedCategory!.filterType != 'all') {
+            if (_selectedCategory != null &&
+                _selectedCategory!.filterType != 'all') {
               final filterType = _selectedCategory!.filterType;
               final filterValue = _selectedCategory!.filterValue;
-              
+
               if (filterType == 'type' && filterValue != null) {
                 // Filter by manga type (Manhwa, Manhua, Manga)
                 filteredMangas = filteredMangas
-                    .where((m) => m.type?.toLowerCase() == filterValue.toLowerCase())
+                    .where(
+                      (m) => m.type?.toLowerCase() == filterValue.toLowerCase(),
+                    )
                     .toList();
               } else if (filterType == 'status' && filterValue != null) {
                 // Filter by status (Ongoing, Completed)
                 filteredMangas = filteredMangas
-                    .where((m) => m.status.toLowerCase() == filterValue.toLowerCase())
+                    .where(
+                      (m) =>
+                          m.status.toLowerCase() == filterValue.toLowerCase(),
+                    )
                     .toList();
               }
             }
@@ -158,46 +192,52 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     ),
                   ),
                 ),
-                // Categories
-                if (mangaService.categories.isNotEmpty)
-                  SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SectionHeader(title: 'Categories'),
-                        SizedBox(
-                          height: 90,
-                          child: ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            scrollDirection: Axis.horizontal,
-                            itemCount: mangaService.categories.length,
-                            itemBuilder: (context, index) {
-                              final category = mangaService.categories[index];
-                              final isSelected =
-                                  _selectedCategory?.id == category.id;
-                              return _buildCategoryCard(
-                                category.name,
-                                category.icon,
-                                category.mangaCount,
-                                isSelected,
-                                () {
-                                  setState(() {
-                                    if (isSelected) {
-                                      _selectedCategory = null;
-                                    } else {
-                                      _selectedCategory = category;
-                                      _selectedGenre =
-                                          null; // Reset genre filter
-                                    }
-                                  });
-                                },
-                              );
-                            },
-                          ),
+                // Categories (Manga Types)
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SectionHeader(title: 'Categories'),
+                      SizedBox(
+                        height: 90,
+                        child: ListView.builder(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _typeCategories.length,
+                          itemBuilder: (context, index) {
+                            final category = _typeCategories[index];
+                            final isSelected =
+                                _selectedCategory?.id == category.id;
+                            // Count manga of this type
+                            final count = mangaService.allMangas
+                                .where(
+                                  (m) =>
+                                      m.type?.toLowerCase() ==
+                                      category.filterValue?.toLowerCase(),
+                                )
+                                .length;
+                            return _buildCategoryCard(
+                              category.name,
+                              category.icon,
+                              count,
+                              isSelected,
+                              () {
+                                setState(() {
+                                  if (isSelected) {
+                                    _selectedCategory = null;
+                                  } else {
+                                    _selectedCategory = category;
+                                    _selectedGenre = null; // Reset genre filter
+                                  }
+                                });
+                              },
+                            );
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                ),
                 // Genre Filter
                 SliverToBoxAdapter(
                   child: Column(
@@ -362,6 +402,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
     bool isSelected,
     VoidCallback onTap,
   ) {
+    // Check if iconName is an emoji (starts with unicode flag or special char)
+    final isEmoji =
+        iconName.contains(
+          RegExp(r'[\u{1F1E0}-\u{1F1FF}]|[\u{1F300}-\u{1F9FF}]', unicode: true),
+        ) ||
+        iconName.length <= 4 && !iconName.contains(RegExp(r'[a-zA-Z]'));
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -377,11 +424,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              _getIconData(iconName),
-              color: isSelected ? Colors.white : AppColors.primary,
-              size: 28,
-            ),
+            if (isEmoji)
+              Text(iconName, style: const TextStyle(fontSize: 28))
+            else
+              Icon(
+                _getIconData(iconName),
+                color: isSelected ? Colors.white : AppColors.primary,
+                size: 28,
+              ),
             const SizedBox(height: 4),
             Text(
               name,
