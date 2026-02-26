@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_lek/const.dart';
 import 'package:provider/provider.dart';
 import '../../services/manga_service.dart';
 import '../../models/category.dart';
@@ -375,11 +376,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           manga: manga,
                           width: double.infinity,
                           onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              AppRouter.mangaDetail,
-                              arguments: manga,
-                            );
+                            gAds.rewardInstance.showRewardAd(() {
+                              Navigator.pushNamed(
+                                context,
+                                AppRouter.mangaDetail,
+                                arguments: manga,
+                              );
+                            });
                           },
                         );
                       }, childCount: filteredMangas.length),

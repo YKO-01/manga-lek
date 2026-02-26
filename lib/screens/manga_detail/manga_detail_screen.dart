@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:manga_lek/const.dart';
 import 'package:provider/provider.dart';
 import '../../models/manga.dart';
 import '../../models/chapter.dart';
@@ -389,14 +390,16 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
           child: ElevatedButton.icon(
             onPressed: chapters.isNotEmpty
                 ? () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouter.reader,
-                      arguments: {
-                        'chapter': chapters.first,
-                        'manga': widget.manga,
-                      },
-                    );
+                    gAds.rewardInstance.showRewardAd(() {
+                      Navigator.pushNamed(
+                        context,
+                        AppRouter.reader,
+                        arguments: {
+                          'chapter': chapters.first,
+                          'manga': widget.manga,
+                        },
+                      );
+                    });
                   }
                 : null,
             icon: const Icon(Icons.play_arrow),
@@ -479,14 +482,16 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
       ),
       child: ListTile(
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            AppRouter.reader,
-            arguments: {
-              'chapter': chapter,
-              'manga': widget.manga,
-            },
-          );
+          gAds.rewardInstance.showRewardAd(() {
+            Navigator.pushNamed(
+              context,
+              AppRouter.reader,
+              arguments: {
+                'chapter': chapter,
+                'manga': widget.manga,
+              },
+            );
+          });
         },
         leading: Container(
           width: 45,

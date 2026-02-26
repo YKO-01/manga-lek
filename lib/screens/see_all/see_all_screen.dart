@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_lek/const.dart';
 import '../../models/manga.dart';
 import '../../core/navigation/app_router.dart';
 import '../../widgets/manga_card.dart';
@@ -38,11 +39,13 @@ class SeeAllScreen extends StatelessWidget {
                 return MangaCard(
                   manga: manga,
                   onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouter.mangaDetail,
-                      arguments: manga,
-                    );
+                    gAds.rewardInstance.showRewardAd(() {
+                      Navigator.pushNamed(
+                        context,
+                        AppRouter.mangaDetail,
+                        arguments: manga,
+                      );
+                    });
                   },
                 );
               },

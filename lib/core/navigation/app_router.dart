@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_lek/const.dart';
 import '../../screens/splash/splash_screen.dart';
 import '../../screens/main/main_screen.dart';
 import '../../screens/manga_detail/manga_detail_screen.dart';
@@ -51,6 +52,7 @@ class AppRouter {
         return _buildRoute(const SettingsScreen(), settings);
       
       case seeAll:
+        gAds.interInstance.showInterstitialAd();
         final args = settings.arguments as Map<String, dynamic>;
         final title = args['title'] as String;
         final mangaList = args['mangaList'] as List<Manga>;

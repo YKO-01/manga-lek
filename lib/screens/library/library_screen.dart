@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_lek/const.dart';
 import 'package:provider/provider.dart';
 import '../../services/manga_service.dart';
 import '../../core/navigation/app_router.dart';
@@ -103,11 +104,13 @@ class _LibraryScreenState extends State<LibraryScreen>
                 },
               ),
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRouter.mangaDetail,
-                  arguments: manga,
-                );
+                gAds.rewardInstance.showRewardAd(() {
+                  Navigator.pushNamed(
+                    context,
+                    AppRouter.mangaDetail,
+                    arguments: manga,
+                  );
+                });
               },
             );
           },
@@ -158,11 +161,13 @@ class _LibraryScreenState extends State<LibraryScreen>
                 ],
               ),
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRouter.mangaDetail,
-                  arguments: manga,
-                );
+                gAds.rewardInstance.showRewardAd(() {
+                  Navigator.pushNamed(
+                    context,
+                    AppRouter.mangaDetail,
+                    arguments: manga,
+                  );
+                });
               },
             );
           },
@@ -198,11 +203,13 @@ class _LibraryScreenState extends State<LibraryScreen>
                 color: AppColors.success,
               ),
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRouter.mangaDetail,
-                  arguments: manga,
-                );
+                gAds.rewardInstance.showRewardAd(() { 
+                  Navigator.pushNamed(
+                    context,
+                    AppRouter.mangaDetail,
+                    arguments: manga,
+                  );
+                });
               },
             );
           },

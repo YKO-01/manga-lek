@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_lek/const.dart';
 import 'package:provider/provider.dart';
 import '../../services/manga_service.dart';
 import '../../core/navigation/app_router.dart';
@@ -18,10 +19,10 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<Manga> _searchResults = [];
   List<String> _recentSearches = [
-    'One Piece',
-    'Naruto',
-    'Attack on Titan',
-    'Demon Slayer',
+    // 'One Piece',
+    // 'Naruto',
+    // 'Attack on Titan',
+    // 'Demon Slayer',
   ];
   bool _isSearching = false;
 
@@ -204,6 +205,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ].map((genre) {
                   return GestureDetector(
                     onTap: () {
+                      gAds.interInstance.showInterstitialAd();
                       _searchController.text = genre;
                       _performSearch(genre);
                     },
@@ -282,12 +284,14 @@ class _SearchScreenState extends State<SearchScreen> {
               return MangaListTile(
                 manga: manga,
                 onTap: () {
-                  _addToRecentSearches(_searchController.text);
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
+                  gAds.rewardInstance.showRewardAd(() {
+                    _addToRecentSearches(_searchController.text);
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.mangaDetail,
+                      arguments: manga,
+                    );
+                  });
                 },
               );
             },

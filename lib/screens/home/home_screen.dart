@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_lek/const.dart';
 import 'package:provider/provider.dart';
 import '../../services/manga_service.dart';
 import '../../core/navigation/app_router.dart';
@@ -132,11 +133,13 @@ class _HomeScreenState extends State<HomeScreen> {
               return FeaturedMangaCard(
                 manga: manga,
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
+                  gAds.rewardInstance.showRewardAd(() {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.mangaDetail,
+                      arguments: manga,
+                    );
+                  });
                 },
               );
             },
@@ -186,11 +189,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 160,
                 showRating: false,
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
+                  gAds.rewardInstance.showRewardAd(() {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.mangaDetail,
+                      arguments: manga,
+                    );
+                  });
                 },
               );
             },
@@ -230,11 +235,13 @@ class _HomeScreenState extends State<HomeScreen> {
               return MangaCard(
                 manga: manga,
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
+                  gAds.rewardInstance.showRewardAd(() {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.mangaDetail,
+                      arguments: manga,
+                    );
+                  });
                 },
               );
             },
@@ -275,11 +282,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 manga: manga,
                 showStatus: true,
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
+                  gAds.rewardInstance.showRewardAd(() {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.mangaDetail,
+                      arguments: manga,
+                    );
+                  });
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   AppRouter.mangaDetail,
+                  //   arguments: manga,
+                  // );
                 },
               );
             },
@@ -320,11 +334,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 manga: manga,
                 showStatus: true,
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
+                  gAds.rewardInstance.showRewardAd(() {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.mangaDetail,
+                      arguments: manga,
+                    );
+                  });
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   AppRouter.mangaDetail,
+                  //   arguments: manga,
+                  // );
                 },
               );
             },
