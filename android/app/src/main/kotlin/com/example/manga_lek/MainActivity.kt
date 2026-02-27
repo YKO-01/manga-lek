@@ -1,4 +1,4 @@
-package com.example.manga_lek
+package com.mangafox.mangafoxapp
 
 import io.flutter.embedding.android.FlutterActivity
 
