@@ -83,12 +83,12 @@ class MangaListTile extends StatelessWidget {
                         AppColors.warning,
                       ),
                       const SizedBox(width: 12),
-                      _buildInfoChip(
-                        context,
-                        Icons.book,
-                        '${manga.chapterCount} Ch',
-                        AppColors.info,
-                      ),
+                      // _buildInfoChip(
+                      //   context,
+                      //   Icons.book,
+                      //   '${manga.chapterCount} Ch',
+                      //   AppColors.info,
+                      // ),
                     ],
                   ),
                   const SizedBox(height: 8),
