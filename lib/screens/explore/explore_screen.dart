@@ -26,7 +26,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     Category(
       id: 'manga',
       name: 'Manga',
-      icon: '🇯🇵',
+      icon: '🇯',
       mangaCount: 0,
       filterType: 'type',
       filterValue: 'Manga',
@@ -34,7 +34,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     Category(
       id: 'manhwa',
       name: 'Manhwa',
-      icon: '🇰🇷',
+      icon: '🇰',
       mangaCount: 0,
       filterType: 'type',
       filterValue: 'Manhwa',
@@ -42,7 +42,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     Category(
       id: 'manhua',
       name: 'Manhua',
-      icon: '🇨🇳',
+      icon: '🇨',
       mangaCount: 0,
       filterType: 'type',
       filterValue: 'Manhua',

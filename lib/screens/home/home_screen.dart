@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 4),
               Text(
-                'Discover Manga',
+                'ManToon',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
             ],

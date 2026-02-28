@@ -1,4 +1,4 @@
-package com.mangafox.mangafoxapp
+package com.mantoon.mantoonapp
 
 import io.flutter.embedding.android.FlutterActivity
 

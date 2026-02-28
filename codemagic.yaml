@@ -6,9 +6,9 @@ workflows:
     environment:
       flutter: stable
       ios_signing:
-        bundle_identifier: com.mangafox.mangafoxapp
+        bundle_identifier: com.mantoon.mantoonapp
         provisioning_profiles:
-          - Provisioning_com.mangafox.mangafoxapp
+          - Provisioning_com.mantoon.mantoonapp
         certificates:
           - store1_cerificate
     scripts:
