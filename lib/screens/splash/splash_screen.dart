@@ -103,7 +103,7 @@ class _SplashScreenState extends State<SplashScreen>
                     const SizedBox(height: 24),
                     // App Name
                     const Text(
-                      'Manga Lek',
+                      'ManToon',
                       style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
