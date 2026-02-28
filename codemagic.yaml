@@ -8,7 +8,7 @@ workflows:
       ios_signing:
         bundle_identifier: com.mantoon.mantoonapp
         provisioning_profiles:
-          - Provisioning_com.mantoon.mantoonapp
+          - provisioning_mantoon
         certificates:
           - store1_cerificate
     scripts:
