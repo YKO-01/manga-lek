@@ -10,7 +10,7 @@ workflows:
         provisioning_profiles:
           - provisioning_mantoon
         certificates:
-          - store1_cerificate
+          - store1_certificate
     scripts:
       - name: Set up code signing settings on Xcode project
         script: xcode-project use-profiles
