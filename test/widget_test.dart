@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:manga_lek/main.dart';
+import 'package:manga_lek/manga_app.dart';
 
 void main() {
   testWidgets('App loads correctly', (WidgetTester tester) async {
