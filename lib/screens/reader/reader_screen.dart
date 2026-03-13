@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:manga_lek/const.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import '../../models/manga.dart';
@@ -689,7 +690,10 @@ class _ReaderScreenState extends State<ReaderScreen> {
               _buildControlButton(
                 icon: Icons.skip_previous,
                 label: 'Previous',
-                onTap: _goToPreviousChapter,
+                onTap: () {
+                  gAds.interInstance.showInterstitialAd();
+                  _goToPreviousChapter();
+                },
                 isEnabled: _hasPreviousChapter,
               ),
               _buildControlButton(
@@ -714,7 +718,10 @@ class _ReaderScreenState extends State<ReaderScreen> {
               _buildControlButton(
                 icon: Icons.skip_next,
                 label: 'Next',
-                onTap: _goToNextChapter,
+                onTap: () {
+                  gAds.interInstance.showInterstitialAd();
+                  _goToNextChapter();
+                },
                 isEnabled: _hasNextChapter,
               ),
             ],

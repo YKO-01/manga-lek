@@ -94,16 +94,21 @@ class _SplashScreenState extends State<SplashScreen>
                           ),
                         ],
                       ),
-                      child: const Icon(
-                        Icons.menu_book_rounded,
-                        size: 60,
-                        color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'assets/icons/logo.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
                     // App Name
                     const Text(
-                      'ManToon',
+                      'Otamia',
                       style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,

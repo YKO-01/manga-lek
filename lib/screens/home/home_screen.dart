@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 4),
               Text(
-                'ManToon',
+                'Otamia',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
             ],

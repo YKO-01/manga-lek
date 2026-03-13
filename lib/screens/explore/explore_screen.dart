@@ -137,6 +137,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         PopupMenuButton<String>(
                           icon: const Icon(Icons.sort),
                           onSelected: (value) {
+                            gAds.interInstance.showInterstitialAd();
                             setState(() {
                               _sortBy = value;
                             });
@@ -291,6 +292,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 genre: genre,
                                 isSelected: isSelected,
                                 onTap: () {
+                                  gAds.interInstance.showInterstitialAd();
                                   setState(() {
                                     _selectedGenre = genre == 'All'
                                         ? null
@@ -413,7 +415,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
         iconName.length <= 4 && !iconName.contains(RegExp(r'[a-zA-Z]'));
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        gAds.interInstance.showInterstitialAd();
+        onTap();
+      },
       child: Container(
         width: 100,
         margin: const EdgeInsets.only(right: 12),
