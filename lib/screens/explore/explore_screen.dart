@@ -378,13 +378,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           manga: manga,
                           width: double.infinity,
                           onTap: () {
-                            gAds.rewardInstance.showRewardAd(() {
+                            gAds.interInstance.showInterstitialAd();
                               Navigator.pushNamed(
                                 context,
                                 AppRouter.mangaDetail,
                                 arguments: manga,
                               );
-                            });
                           },
                         );
                       }, childCount: filteredMangas.length),

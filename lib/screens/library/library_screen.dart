@@ -104,13 +104,12 @@ class _LibraryScreenState extends State<LibraryScreen>
                 },
               ),
               onTap: () {
-                gAds.rewardInstance.showRewardAd(() {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
-                });
+                gAds.interInstance.showInterstitialAd();
+                Navigator.pushNamed(
+                  context,
+                  AppRouter.mangaDetail,
+                  arguments: manga,
+                );
               },
             );
           },
@@ -161,13 +160,12 @@ class _LibraryScreenState extends State<LibraryScreen>
                 ],
               ),
               onTap: () {
-                gAds.rewardInstance.showRewardAd(() {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
-                });
+                gAds.interInstance.showInterstitialAd();
+                Navigator.pushNamed(
+                  context,
+                  AppRouter.mangaDetail,
+                  arguments: manga,
+                );
               },
             );
           },
@@ -203,13 +201,12 @@ class _LibraryScreenState extends State<LibraryScreen>
                 color: AppColors.success,
               ),
               onTap: () {
-                gAds.rewardInstance.showRewardAd(() { 
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.mangaDetail,
-                    arguments: manga,
-                  );
-                });
+                gAds.interInstance.showInterstitialAd();
+                Navigator.pushNamed(
+                  context,
+                  AppRouter.mangaDetail,
+                  arguments: manga,
+                );
               },
             );
           },

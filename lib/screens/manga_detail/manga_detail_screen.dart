@@ -390,16 +390,15 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
           child: ElevatedButton.icon(
             onPressed: chapters.isNotEmpty
                 ? () {
-                    gAds.rewardInstance.showRewardAd(() {
-                      Navigator.pushNamed(
-                        context,
-                        AppRouter.reader,
-                        arguments: {
-                          'chapter': chapters.first,
-                          'manga': widget.manga,
-                        },
-                      );
-                    });
+                  gAds.interInstance.showInterstitialAd();
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.reader,
+                      arguments: {
+                        'chapter': chapters.first,
+                        'manga': widget.manga,
+                      },
+                    );
                   }
                 : null,
             icon: const Icon(Icons.play_arrow),
@@ -482,7 +481,7 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
       ),
       child: ListTile(
         onTap: () {
-          gAds.rewardInstance.showRewardAd(() {
+          gAds.interInstance.showInterstitialAd();
             Navigator.pushNamed(
               context,
               AppRouter.reader,
@@ -491,7 +490,6 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
                 'manga': widget.manga,
               },
             );
-          });
         },
         leading: Container(
           width: 45,

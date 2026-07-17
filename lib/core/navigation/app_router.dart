@@ -46,9 +46,11 @@ class AppRouter {
         return _buildRoute(const SearchScreen(), settings);
       
       case favorites:
+        gAds.interInstance.showInterstitialAd();
         return _buildRoute(const FavoritesScreen(), settings);
       
       case AppRouter.settings:
+        gAds.interInstance.showInterstitialAd();
         return _buildRoute(const SettingsScreen(), settings);
       
       case seeAll:

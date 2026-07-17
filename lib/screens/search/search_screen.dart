@@ -284,14 +284,13 @@ class _SearchScreenState extends State<SearchScreen> {
               return MangaListTile(
                 manga: manga,
                 onTap: () {
-                  gAds.rewardInstance.showRewardAd(() {
+                  gAds.interInstance.showInterstitialAd();
                     _addToRecentSearches(_searchController.text);
                     Navigator.pushNamed(
                       context,
                       AppRouter.mangaDetail,
                       arguments: manga,
                     );
-                  });
                 },
               );
             },

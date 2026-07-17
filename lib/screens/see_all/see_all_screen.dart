@@ -39,13 +39,12 @@ class SeeAllScreen extends StatelessWidget {
                 return MangaCard(
                   manga: manga,
                   onTap: () {
-                    gAds.rewardInstance.showRewardAd(() {
+                    gAds.interInstance.showInterstitialAd();
                       Navigator.pushNamed(
                         context,
                         AppRouter.mangaDetail,
                         arguments: manga,
                       );
-                    });
                   },
                 );
               },

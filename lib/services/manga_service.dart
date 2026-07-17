@@ -6,13 +6,18 @@ import '../models/chapter.dart';
 import '../models/category.dart';
 
 class MangaService extends ChangeNotifier {
-  // Supabase URLs
-  static const String _mangaDataUrl =
-      'https://dufgldnpzvzrmpwmskli.supabase.co/storage/v1/object/public/manga/manga_data.json';
-  static const String _chaptersUrl =
-      'https://dufgldnpzvzrmpwmskli.supabase.co/storage/v1/object/public/manga/chapters.json';
-  static const String _categoriesUrl =
-      'https://dufgldnpzvzrmpwmskli.supabase.co/storage/v1/object/public/manga/categories.json';
+  // Google Drive direct-download URLs.
+  // Built from the file's share ID using the drive.usercontent download endpoint,
+  // which returns the file contents directly instead of an HTML preview page.
+  static String _driveUrl(String fileId) =>
+      'https://drive.usercontent.google.com/download?id=$fileId&export=download';
+
+  static final String _mangaDataUrl = _driveUrl(
+    '1yTKttkS11oTHK6yEw8g6s27eWTAMNbdP',
+  );
+  static final String _chaptersUrl = _driveUrl(
+    '16BGy_bHxQbGT9PvoGQXmoKZkwG62bEG6',
+  );
 
   List<Manga> _allMangas = [];
   List<Manga> _favoriteMangas = [];
@@ -47,14 +52,14 @@ class MangaService extends ChangeNotifier {
     return _allMangas.where((m) => m.status == 'Ongoing').toList();
   }
 
-  // Load data from Supabase URLs
+  // Load data from Google Drive URLs
   Future<void> loadData() async {
     _isLoading = true;
     _error = null;
     notifyListeners();
 
     try {
-      // Fetch manga_data.json from Supabase
+      // Fetch manga_data.json from Google Drive
       final mangaDataResponse = await http.get(Uri.parse(_mangaDataUrl));
       if (mangaDataResponse.statusCode != 200) {
         throw Exception(
@@ -87,7 +92,7 @@ class MangaService extends ChangeNotifier {
         }
       }
 
-      // Fetch chapters.json from Supabase (contains pages)
+      // Fetch chapters.json from Google Drive (contains pages)
       final chaptersResponse = await http.get(Uri.parse(_chaptersUrl));
       if (chaptersResponse.statusCode == 200) {
         final List<dynamic> chapterList = json.decode(chaptersResponse.body);
@@ -118,14 +123,8 @@ class MangaService extends ChangeNotifier {
         }
       }
 
-      // Fetch categories.json from Supabase
-      final categoriesResponse = await http.get(Uri.parse(_categoriesUrl));
-      if (categoriesResponse.statusCode == 200) {
-        final List<dynamic> categoryList = json.decode(categoriesResponse.body);
-        _categories = categoryList.map((c) => Category.fromJson(c)).toList();
-      } else {
-        _categories = [];
-      }
+      // No separate categories source on Google Drive; leave empty.
+      _categories = [];
 
       _isLoading = false;
       notifyListeners();

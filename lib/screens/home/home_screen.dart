@@ -133,13 +133,12 @@ class _HomeScreenState extends State<HomeScreen> {
               return FeaturedMangaCard(
                 manga: manga,
                 onTap: () {
-                  gAds.rewardInstance.showRewardAd(() {
+                  gAds.interInstance.showInterstitialAd();
                     Navigator.pushNamed(
                       context,
                       AppRouter.mangaDetail,
                       arguments: manga,
                     );
-                  });
                 },
               );
             },
@@ -189,13 +188,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 160,
                 showRating: false,
                 onTap: () {
-                  gAds.rewardInstance.showRewardAd(() {
+                  gAds.interInstance.showInterstitialAd();
                     Navigator.pushNamed(
                       context,
                       AppRouter.mangaDetail,
                       arguments: manga,
                     );
-                  });
                 },
               );
             },
@@ -235,13 +233,12 @@ class _HomeScreenState extends State<HomeScreen> {
               return MangaCard(
                 manga: manga,
                 onTap: () {
-                  gAds.rewardInstance.showRewardAd(() {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouter.mangaDetail,
-                      arguments: manga,
-                    );
-                  });
+                  gAds.interInstance.showInterstitialAd();
+                  Navigator.pushNamed(
+                    context,
+                    AppRouter.mangaDetail,
+                    arguments: manga,
+                  );
                 },
               );
             },
@@ -282,13 +279,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 manga: manga,
                 showStatus: true,
                 onTap: () {
-                  gAds.rewardInstance.showRewardAd(() {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouter.mangaDetail,
-                      arguments: manga,
-                    );
-                  });
+                  gAds.interInstance.showInterstitialAd();
+                  Navigator.pushNamed(
+                    context,
+                    AppRouter.mangaDetail,
+                    arguments: manga,
+                  );
                   // Navigator.pushNamed(
                   //   context,
                   //   AppRouter.mangaDetail,
@@ -334,13 +330,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 manga: manga,
                 showStatus: true,
                 onTap: () {
-                  gAds.rewardInstance.showRewardAd(() {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouter.mangaDetail,
-                      arguments: manga,
-                    );
-                  });
+                  gAds.interInstance.showInterstitialAd();
+                  Navigator.pushNamed(
+                    context,
+                    AppRouter.mangaDetail,
+                    arguments: manga,
+                  );
                   // Navigator.pushNamed(
                   //   context,
                   //   AppRouter.mangaDetail,
